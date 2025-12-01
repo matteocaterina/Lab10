@@ -22,7 +22,6 @@ class Model:
 
         self.tratte_valide = DAO.get_tratte_valide(threshold)
         for tratta in self.tratte_valide:
-            print(tratta)
             self.G.add_edge(tratta.nome1,tratta.nome2, weight = tratta.valore_medio)
 
         self._edges = self.G.number_of_edges()
@@ -43,7 +42,6 @@ class Model:
         :return: numero di nodi del grafo
         """
         # TODO
-        print(self.G.number_of_nodes())
         return self._nodes
 
     def get_all_edges(self):
