@@ -32,11 +32,9 @@ class Controller:
             self._view.lista_visualizzazione.controls.append(ft.Text(f"Numero di archi: {num_archi}"))
 
             lista_tratte = self._model.get_all_edges()
-            print(lista_tratte)
 
             for i,tratta in enumerate(lista_tratte, start=1):
-                print(tratta)
-                self._view.lista_visualizzazione.controls.append(ft.Text(f'{i}) [{tratta[1]} - > {tratta[0]}] -- guadagno medio: € {tratta[2]}'))
+                self._view.lista_visualizzazione.controls.append(ft.Text(f'{i}) {str(tratta)}'))
             self._view.update()
 
 

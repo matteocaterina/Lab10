@@ -3,10 +3,11 @@ import networkx as nx
 
 class Model:
     def __init__(self):
-        self.tratte_valide = None
         self._nodes = None
         self._edges = None
         self.G = nx.Graph()
+        self.tratte_valide = None
+        self._lista_edges = []
 
     def costruisci_grafo(self, threshold):
         """
@@ -17,14 +18,15 @@ class Model:
         self.G.clear()
         lista_hub = DAO.get_hub()
         for hub in lista_hub:
-            self.G.add_node(hub)
-        self._nodes = self.G.number_of_nodes()
+            self.G.add_node(hub)                #nodes
+        self._nodes = self.G.number_of_nodes()  #numero dei nodes
 
         self.tratte_valide = DAO.get_tratte_valide(threshold)
-        for tratta in self.tratte_valide:
-            self.G.add_edge(tratta.nome1,tratta.nome2, weight = tratta.valore_medio)
 
-        self._edges = self.G.number_of_edges()
+        for tratta in self.tratte_valide:
+            self.G.add_edge(tratta.nome1,tratta.nome2, weight = tratta.valore_medio)    #edges
+            self._lista_edges.append(tratta)        #lista degli edges
+        self._edges = self.G.number_of_edges()      #numero degli edges
 
 
 
@@ -50,7 +52,4 @@ class Model:
         :return: gli edges del grafo con gli attributi (il weight)
         """
         # TODO
-        lista = []
-        for tratta in self.tratte_valide:
-            lista.append((tratta.nome1, tratta.nome2, tratta.valore_medio))
-        return lista
+        return self._lista_edges
