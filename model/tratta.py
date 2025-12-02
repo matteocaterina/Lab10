@@ -13,6 +13,3 @@ class Tratta:
 
     def __str__(self):
         return f'[{self.nome2} ({self.stato2}) -> {self.nome1} ({self.stato1})] -- guadagno Medio Per Spedizione: € {self.valore_medio}'
-
-    def __hash__(self):
-        return hash(self.nome1)
